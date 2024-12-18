@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Ratings from "./Rating.jsx";
 import { useGetTopProductsQuery } from "../../Redux/api/productApiSlice.js";
 import SmallProduct from "./SmallProducts.jsx";
-import Loader from "../../components/Loader";
+import Loader from "../../Components/Loader";
 
 const ProductTabs = ({
   loadingProductReview,
