@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetFilteredProductsQuery } from "../Redux/api/productApiSlice";
-import { useFetchCategoriesQuery } from "../Redux/api/categoryApiSlice";
 import {
   setCategories,
   setProducts,
   setChecked,
-} from '../Redux/features/shop/shopSlice.js';
-import Loader from "../Components/Loader.jsx";
+} from "../Redux/features/shop/shopSlice.js";
+import { useFetchCategoriesQuery } from "../Redux/api/categoryApiSlice";
+import Loader from "../Components/Loader";
+import { use } from "react";
+import ProductCard from "./Products/ProductCard.jsx";
+
 const Shop = () => {
   const dispatch = useDispatch();
   const { categories, products, checked, radio } = useSelector(
@@ -77,30 +80,28 @@ const Shop = () => {
     setPriceFilter(e.target.value);
   };
 
-
   return (
     <>
       <div className="container mx-auto">
         <div className="flex md:flex-row ml-20">
-          <div className="p-3 mt-2 mb-2">
-            <h2 className="h4 text-center py-2 text-white bg-black rounded-full mb-2">
+          <div className="bg-gray-300 p-3 mt-2 mb-2 rounded-md">
+            <h2 className="h4 text-center text-white py-2 bg-black rounded-full mb-2 p-2 ">
               Filter by Categories
             </h2>
-
-            <div className="p-5 w-[15rem]">
+            <div className="p-5 w-[15rem}">
               {categories?.map((c) => (
                 <div key={c._id} className="mb-2">
-                  <div className="flex items-center mr-4">
+                  <div className="flex ietms-center mr-4">
                     <input
                       type="checkbox"
                       id="red-checkbox"
                       onChange={(e) => handleCheck(e.target.checked, c._id)}
-                      className="w-4 h-4 text-black bg-gray-100 border-gray-300 rounded focus:ring-pink-500 dark:focus:ring-pink-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      className="w-4 h-4 text-pink-500 bg-gray-200 border-gray-400 rounded focus:ring-pink-400 dark:focus:ring-pink-500 dark:ring-offset-gray-100 focus:ring-2 dark:bg-gray-50 dark:border-gray-200"
                     />
 
                     <label
                       htmlFor="pink-checkbox"
-                      className="ml-2 text-sm font-medium text-black dark:text-gray-300"
+                      className="ml-2 text-sm font-medium text-black dark:text-black-300"
                     >
                       {c.name}
                     </label>
@@ -108,11 +109,9 @@ const Shop = () => {
                 </div>
               ))}
             </div>
-
-            <h2 className="h4 text-center py-2 text-white bg-black rounded-full mb-2">
-              Filter by Brands
+            <h2 className="h4 text-white text-center py-2 bg-black rounded-full mb-2">
+              Filter by Brand
             </h2>
-
             <div className="p-5">
               {uniqueBrands?.map((brand) => (
                 <>
@@ -127,7 +126,7 @@ const Shop = () => {
 
                     <label
                       htmlFor="pink-radio"
-                      className="ml-2 text-sm font-medium text-black dark:text-gray-300"
+                      className="ml-2 text-sm font-medium text-black dark:text-black-300"
                     >
                       {brand}
                     </label>
@@ -135,8 +134,7 @@ const Shop = () => {
                 </>
               ))}
             </div>
-
-            <h2 className="h4 text-center py-2 text-white bg-black rounded-full mb-2">
+            <h2 className="h4 text-white text-center py-2 bg-black rounded-full mb-2">
               Filter by Price
             </h2>
 
@@ -146,20 +144,19 @@ const Shop = () => {
                 placeholder="Enter Price"
                 value={priceFilter}
                 onChange={handlePriceChange}
-                className="w-full px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:ring focus:border-pink-300"
+                className="w-full px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:ring focus:border-blue-600"
               />
             </div>
 
-            <div className="p-5 pt-0">
+            <div className="p-5 flex justify-center items-center">
               <button
-                className="w-full border my-4"
+                className="bg-black text-white w-20 border rounded-full my-4"
                 onClick={() => window.location.reload()}
               >
                 Reset
               </button>
             </div>
           </div>
-
           <div className="p-3">
             <h2 className="h4 text-center mb-2">{products?.length} Products</h2>
             <div className="flex flex-wrap">
@@ -177,7 +174,7 @@ const Shop = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Shop
+export default Shop;
