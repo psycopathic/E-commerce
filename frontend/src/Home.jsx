@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useGetProductsQuery } from "./Redux/api/productApiSlice";
 import Loader from "./Components/Loader";
-import Message from "./Components/Loader";
+import Message from "./Components/Message";
 import Header from "./Components/Header";
 import Product from "./pages/Products/Product";
 
@@ -11,6 +11,7 @@ const Home = () => {
 
   return (
     <>
+          {/* <h1 className="text-center text-white bg-black w-full p-5">myShop</h1> */}
       {!keyword ? <Header /> : null}
       {isLoading ? (
         <Loader />

@@ -11,7 +11,7 @@ import {
   addFavoriteToLocalStorage,
   getFavoritesFromLocalStorage,
   removeFavoriteFromLocalStorage,
-} from "../../Utils/localStorage";
+} from "../../utils/localStorage";
 
 const HeartIcon = ({ product }) => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const HeartIcon = ({ product }) => {
   useEffect(() => {
     const favoritesFromLocalStorage = getFavoritesFromLocalStorage();
     dispatch(setFavorites(favoritesFromLocalStorage));
-  }, []);
+  }, [dispatch]);
 
   const toggleFavorites = () => {
     if (isFavorite) {
